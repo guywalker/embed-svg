@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/rocket.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inline SVG</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h1>Inline SVG</h1>
+        <h3>Stop bundling your SVGs</h3>
+        
+        <div class="demo-section">
+          <h2>Basic Usage</h2>
+          <div class="example">
+<inline-svg src="/rocket.svg" width="100" height="100" fill="#ffce2b"></inline-svg>
+          </div>
+          
+          <div class="example-code"></div>
+        </div>
+        
+        <div class="demo-section">
+          <h2>Replacements</h2>
+          <div class="example">
+<inline-svg src="/car.svg" width="300" height="300">
+  <inline-svg-replace pattern="#2f2e43" value="#725C42"></inline-svg-replace>
+  <inline-svg-replace pattern="1\.22292Z&quot;\s+fill=&quot;#6c63ff" value="1.22292Z&quot; fill=&quot;#42692F"></inline-svg-replace>
+</inline-svg>
+          </div>
+          
+          <div class="example-code"></div>
+        </div>
+        
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

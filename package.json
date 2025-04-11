@@ -1,0 +1,31 @@
+{
+  "name": "inline-svg",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@vitest/ui": "^3.1.1",
+    "esbuild": "^0.25.2",
+    "fetch-mock": "^12.5.2",
+    "highlight.js": "^11.11.1",
+    "jsdom": "^26.0.0",
+    "nanoid": "^5.1.5",
+    "picocolors": "^1.1.1",
+    "postcss": "^8.5.3",
+    "rollup": "^4.39.0",
+    "source-map-js": "^1.2.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.1.1"
+  },
+  "description": "Dynamically inline SVG files so they can be customised without bundling",
+  "main": "dist/inline-svg.js",
+  "keywords": ["inline-svg", "svg", "embed", "inline"],
+  "author": "Guy Walker",
+  "license": "Apache-2.0"
+}
