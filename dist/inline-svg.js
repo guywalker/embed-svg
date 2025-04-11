@@ -1,25 +1,25 @@
 var l = Object.defineProperty;
-var h = (r, o, e) => o in r ? l(r, o, { enumerable: !0, configurable: !0, writable: !0, value: e }) : r[o] = e;
-var c = (r, o, e) => h(r, typeof o != "symbol" ? o + "" : o, e);
-let a = {};
-function u(r) {
-  return new Promise((o, e) => {
-    if (console.log(`Loading SVG from ${r}`), a[r]) {
-      console.log(`SVG from ${r} found in cache`), o(a[r]);
+var h = (n, s, e) => s in n ? l(n, s, { enumerable: !0, configurable: !0, writable: !0, value: e }) : n[s] = e;
+var c = (n, s, e) => h(n, typeof s != "symbol" ? s + "" : s, e);
+let i = {};
+function u(n) {
+  return new Promise((s, e) => {
+    if (i[n]) {
+      s(i[n]);
       return;
     }
-    const t = fetch(r).then((n) => n.text()).then((n) => {
-      const s = document.createElement("div");
-      return s.innerHTML = n.trim(), a[r] = n, o(n), n;
-    }).catch((n) => (e(n), null));
-    a[r] = t;
+    const t = fetch(n).then((r) => r.text()).then((r) => {
+      const o = document.createElement("div");
+      return o.innerHTML = r.trim(), i[n] = r, s(r), r;
+    }).catch((r) => (e(r), null));
+    i[n] = t;
   });
 }
 class d extends HTMLElement {
   constructor() {
     super();
-    c(this, "shadow");
-    this.shadow = this.attachShadow({ mode: "open" });
+    c(this, "renderRoot");
+    this.getAttribute("shadow") === "false" ? this.renderRoot = this : this.renderRoot = this.attachShadow({ mode: "open" });
   }
   static get observedAttributes() {
     return ["src"];
@@ -27,8 +27,8 @@ class d extends HTMLElement {
   connectedCallback() {
     this.loadSVG();
   }
-  attributeChangedCallback(e, t, n) {
-    e === "src" && t !== n && this.loadSVG();
+  attributeChangedCallback(e, t, r) {
+    e === "src" && t !== r && this.loadSVG();
   }
   async loadSVG() {
     const e = this.getAttribute("src");
@@ -48,8 +48,8 @@ class d extends HTMLElement {
   attachSVG(e) {
     const t = document.createElement("div");
     t.innerHTML = this.applyReplacements(e);
-    const n = t.querySelector("svg");
-    this.transferAttributes(n), this.shadow.innerHTML = "", this.shadow.appendChild(n);
+    const r = t.querySelector("svg");
+    this.transferAttributes(r), this.renderRoot.innerHTML = "", this.renderRoot.appendChild(r);
   }
   transferAttributes(e) {
     Array.from(this.attributes).forEach((t) => {
@@ -57,9 +57,9 @@ class d extends HTMLElement {
     });
   }
   applyReplacements(e) {
-    return this.querySelectorAll("inline-svg-replace").forEach((n) => {
-      const s = n.getAttribute("pattern"), i = n.getAttribute("value");
-      s && i && (e = e.replace(new RegExp(s, "g"), i));
+    return this.querySelectorAll("inline-svg-replace").forEach((r) => {
+      const o = r.getAttribute("pattern"), a = r.getAttribute("value");
+      o && a && (e = e.replace(new RegExp(o, "g"), a));
     }), e;
   }
 }

@@ -45,6 +45,7 @@ You can replace specific patterns in your SVG with custom values:
 ### Attributes
 
 - `src` (required): Path to the SVG file
+- `shadow` (optional): Enable shadow DOM encapsulation (default: `true`)
 - Any standard SVG attribute (optional): Will be transferred to the loaded SVG
   - `width`
   - `height`
@@ -60,6 +61,9 @@ Use this element to define pattern replacements within the SVG:
 
 - `pattern`: The pattern to search for in the SVG
 - `value`: The value to replace the pattern with
+
+## Server-Side Rendering (SSR)
+The inline-svg component is designed to work in the browser for lazy loading SVGs and therefore does not require any server-side rendering. However, if you are using a server-side rendering framework already, a conditional empty node export has been created to prevent any errors in your SSR process.
 
 ## Development
 

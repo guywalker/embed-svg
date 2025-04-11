@@ -1,7 +1,7 @@
 import { loadSVG } from "../services/svg-loader";
 
 export class InlineSVG extends HTMLElement {
-  private shadow: ShadowRoot;
+  private renderRoot: HTMLElement | ShadowRoot;
   
   static get observedAttributes() {
     return ['src'];
@@ -9,7 +9,12 @@ export class InlineSVG extends HTMLElement {
   
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.getAttribute('shadow');
+    if (shadow === 'false') {
+      this.renderRoot = this;
+    } else {
+      this.renderRoot = this.attachShadow({ mode: 'open' });
+    }
   }
   
   connectedCallback() {
@@ -52,8 +57,8 @@ export class InlineSVG extends HTMLElement {
     this.transferAttributes(svgElement);
       
     // Clear the shadow DOM and append the SVG
-    this.shadow.innerHTML = '';
-    this.shadow.appendChild(svgElement);
+    this.renderRoot.innerHTML = '';
+    this.renderRoot.appendChild(svgElement);
   }
   
   private transferAttributes(svgElement: SVGElement) {

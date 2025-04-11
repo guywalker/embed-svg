@@ -65,12 +65,8 @@ describe("InlineSVG Component", () => {
   });
 
   it("should load and render an SVG correctly", async () => {
-    element = document.createElement("inline-svg") as InlineSVG;
-    element.setAttribute("src", "/public/car.svg");
-    element.setAttribute("width", "200");
-    element.setAttribute("height", "150");
-    element.setAttribute("fill", "#f44336");
-    container.appendChild(element);
+    container.innerHTML = `<inline-svg src="/public/car.svg" width="200" height="150" fill="#f44336"></inline-svg>`;
+    element = document.querySelector("inline-svg") as InlineSVG;
 
     await waitForElement(() => element.shadowRoot?.querySelector("svg"));
 
@@ -117,15 +113,10 @@ describe("InlineSVG Component", () => {
   });
 
   it("should apply replacements to SVG content", async () => {
-    element = document.createElement("inline-svg") as InlineSVG;
-    element.setAttribute("src", "/public/car.svg");
-
-    const replacement = document.createElement("inline-svg-replace");
-    replacement.setAttribute("pattern", "#2f2e43");
-    replacement.setAttribute("value", "#725C42");
-    element.appendChild(replacement);
-
-    container.appendChild(element);
+    container.innerHTML = `<inline-svg src="/public/car.svg">
+      <inline-svg-replace pattern="#2f2e43" value="#725C42"></inline-svg-replace>
+    </inline-svg>`;
+    element = document.querySelector("inline-svg") as InlineSVG;
 
     await waitForElement(() => element.shadowRoot?.querySelector("svg"));
 
@@ -137,8 +128,7 @@ describe("InlineSVG Component", () => {
   });
 
   it("should handle missing src attribute", async () => {
-    element = document.createElement("inline-svg") as InlineSVG;
-    container.appendChild(element);
+    container.innerHTML = `<inline-svg></inline-svg>`;
 
     // Give time for the component to process
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -149,9 +139,8 @@ describe("InlineSVG Component", () => {
   });
 
   it("should handle SVG loading errors", async () => {
-    element = document.createElement("inline-svg") as InlineSVG;
-    element.setAttribute("src", "/public/invalid.svg");
-    container.appendChild(element);
+    container.innerHTML = `<inline-svg src="/public/invalid.svg"></inline-svg>`;
+    container.querySelector("inline-svg") as InlineSVG;
 
     // Give time for the error to be caught and logged
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -161,29 +150,30 @@ describe("InlineSVG Component", () => {
   });
 
   it("should only fetch the SVG once", async () => {
-    const inline1: InlineSVG = document.createElement(
+    container.innerHTML = `
+    <inline-svg src="/public/car.svg" width="200" height="150" fill="#f44336"></inline-svg>
+    <inline-svg src="/public/car.svg" width="200" height="150" fill="#f44336"></inline-svg>`;
+    const inline1: InlineSVG = document.querySelectorAll(
       "inline-svg"
-    ) as InlineSVG;
-    inline1.setAttribute("src", "/public/car.svg");
-    inline1.setAttribute("width", "200");
-    inline1.setAttribute("height", "150");
-    inline1.setAttribute("fill", "#f44336");
+    )[0] as InlineSVG;
 
-    const inline2: InlineSVG = document.createElement(
+    const inline2: InlineSVG = document.querySelectorAll(
       "inline-svg"
-    ) as InlineSVG;
-    inline2.setAttribute("src", "/public/car.svg");
-    inline2.setAttribute("width", "200");
-    inline2.setAttribute("height", "150");
-    inline2.setAttribute("fill", "#f44336");
-
-    container.appendChild(inline1);
-    container.appendChild(inline2);
+    )[1] as InlineSVG;
 
     await waitForElement(() => inline1.shadowRoot?.querySelector("svg"));
     await waitForElement(() => inline2.shadowRoot?.querySelector("svg"));
 
     expect(fetchMock.callHistory.calls().length).toBe(1);
     expect(fetchMock.callHistory.calls()[0].url).toMatch("/public/car.svg");
+  });
+
+  it("should render to the light DOM when shadow is false", async () => {
+    container.innerHTML = `<inline-svg src="/public/car.svg" shadow="false"></inline-svg>`;
+    const element = container.querySelector("inline-svg") as InlineSVG;
+    await waitForElement(() => element.querySelector("svg"));
+
+    expect(element.shadowRoot).toBeNull();
+    expect(element.querySelector("svg")).not.toBeNull();
   });
 });

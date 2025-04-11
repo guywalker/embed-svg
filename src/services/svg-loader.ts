@@ -6,10 +6,8 @@ export function clearCache() {
 
 export function loadSVG(src: string): Promise<string | null> {
   return new Promise((resolve, reject) => {
-    console.log(`Loading SVG from ${src}`);
     // Check if the SVG is already in the cache
     if (svgCache[src]) {
-      console.log(`SVG from ${src} found in cache`);
       resolve(svgCache[src]);
       return;
     }
