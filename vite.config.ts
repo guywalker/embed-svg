@@ -16,17 +16,11 @@ export default defineConfig({
     copyPublicDir: false,
     minify: true,
     lib: {
-      entry: ['src/components/inline-svg.ts', 'src/components/inline-svg.node.ts'],
-      name: 'InlineSVG',
+      entry: ['src/components/embed-svg.ts', 'src/components/embed-svg.node.ts'],
+      name: 'EmbedSVG',
       // the proper extensions will be added
       fileName: (_format, entryName) => `${entryName}.js`,
       formats: ['es'],
     },
-    // rollupOptions: {
-    //   input: ['src/components/inline-svg.ts', 'src/components/inline-svg.node.ts'],
-    //   output: {
-    //     // preserveModules: false,
-    //   }
-    // }
   }
 })

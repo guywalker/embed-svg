@@ -1,6 +1,6 @@
 import { loadSVG } from "../services/svg-loader";
 
-export class InlineSVG extends HTMLElement {
+export class EmbedSVG extends HTMLElement {
   private renderRoot: HTMLElement | ShadowRoot;
   
   static get observedAttributes() {
@@ -70,7 +70,7 @@ export class InlineSVG extends HTMLElement {
   }
 
   private applyReplacements(svgStr: string): string {
-    const replacements = this.querySelectorAll(`inline-svg-replace`);
+    const replacements = this.querySelectorAll(`embed-svg-replace`);
     replacements.forEach(replacement => {
       const pattern = replacement.getAttribute('pattern');
       const value = replacement.getAttribute('value');
@@ -84,4 +84,4 @@ export class InlineSVG extends HTMLElement {
 
 }
 
-customElements.define('inline-svg', InlineSVG);
+customElements.define('embed-svg', EmbedSVG);

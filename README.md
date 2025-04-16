@@ -1,4 +1,4 @@
-# Inline SVG Web Component
+# Embed SVG Web Component
 
 A lightweight, customizable web component for dynamically inlining SVG files into your web applications. This component allows you to embed SVGs with customizable attributes and replaceable patterns, making it perfect for dynamic icons and illustrations.
 
@@ -14,7 +14,7 @@ A lightweight, customizable web component for dynamically inlining SVG files int
 ## Installation
 
 ```bash
-npm install inline-svg
+npm install embed-svg
 ```
 
 ## Usage
@@ -22,12 +22,12 @@ npm install inline-svg
 ### Basic Usage
 
 ```html
-<inline-svg 
+<embed-svg 
   src="/path/to/your.svg"
   width="200"
   height="150"
   fill="#f44336"
-></inline-svg>
+></embed-svg>
 ```
 
 ### Pattern Replacement
@@ -35,9 +35,9 @@ npm install inline-svg
 You can replace specific patterns in your SVG with custom values:
 
 ```html
-<inline-svg src="/path/to/your.svg">
-  <inline-svg-replace pattern="COLOR_PLACEHOLDER" value="blue"></inline-svg-replace>
-</inline-svg>
+<embed-svg src="/path/to/your.svg">
+  <embed-svg-replace pattern="COLOR_PLACEHOLDER" value="blue"></embed-svg-replace>
+</embed-svg>
 ```
 
 ## API
@@ -55,7 +55,7 @@ You can replace specific patterns in your SVG with custom values:
 
 ### Child Elements
 
-#### `<inline-svg-replace>`
+#### `<embed-svg-replace>`
 
 Use this element to define pattern replacements within the SVG:
 
@@ -63,7 +63,7 @@ Use this element to define pattern replacements within the SVG:
 - `value`: The value to replace the pattern with
 
 ## Server-Side Rendering (SSR)
-The inline-svg component is designed to work in the browser for lazy loading SVGs and therefore does not require any server-side rendering. However, if you are using a server-side rendering framework already, a conditional empty node export has been created to prevent any errors in your SSR process.
+The embed-svg component is designed to work in the browser for lazy loading SVGs and therefore does not require any server-side rendering. However, if you are using a server-side rendering framework already, a conditional empty node export has been created to prevent any errors in your SSR process.
 
 ## Development
 

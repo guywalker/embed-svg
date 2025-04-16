@@ -5,15 +5,15 @@
     <link rel="icon" type="image/svg+xml" href="/rocket.svg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inline SVG</title>
+    <title>Embed SVG</title>
   </head>
   <body>
     <div id="app">
       <div>
-        <h1>Inline SVG</h1>
+        <h1>Embed SVG</h1>
         <h3>Stop bundling your SVGs</h3>
 
-        <p>Inline SVG is a simple web component that allows you to inline SVGs into your HTML.</p>
+        <p>Embed SVG is a simple web component that allows you to inline SVGs into your HTML.</p>
         <p>All the benefits of inlining your SVGs without having to bundle them.</p>
 
         <h3>Features</h3>
@@ -30,12 +30,12 @@
         <div class="demo-section">
           <h2>Installation</h2>
           <p>
-            You can install Inline SVG using npm:
+            You can install Embed SVG using npm:
           </p>
-          <pre><code class="language-bash">npm install inline-svg</code></pre>
+          <pre><code class="language-bash">npm install embed-svg</code></pre>
         
           <p>Then import the package</p>
-          <pre><code class="language-js">import 'inline-svg';</code></pre>
+          <pre><code class="language-js">import 'embed-svg';</code></pre>
         
         </div>
         
@@ -44,7 +44,7 @@
           <h2>Basic Usage</h2>
           <div class="example">
 <div class="svg-container" id="example-1">
-<inline-svg src="https://raw.githubusercontent.com/guywalker/inline-svg/refs/heads/main/public/rocket.svg" width="80" height="80" fill="#ffce2b"></inline-svg>
+<embed-svg src="https://raw.githubusercontent.com/guywalker/embed-svg/refs/heads/main/public/rocket.svg" width="80" height="80" fill="#ffce2b"></embed-svg>
 </div>
           </div>
           
@@ -55,10 +55,10 @@
           <h2>Replacements</h2>
           <div class="example">
 <div class="svg-container" id="example-2">
-<inline-svg src="https://raw.githubusercontent.com/guywalker/inline-svg/refs/heads/main/public/car.svg" width="250" height="250">
-  <inline-svg-replace pattern="#2f2e43" value="#725C42"></inline-svg-replace>
-  <inline-svg-replace pattern="1\.22292Z&quot;\s+fill=&quot;#6c63ff" value="1.22292Z&quot; fill=&quot;#42692F"></inline-svg-replace>
-</inline-svg>
+<embed-svg src="https://raw.githubusercontent.com/guywalker/embed-svg/refs/heads/main/public/car.svg" width="250" height="250">
+  <embed-svg-replace pattern="#2f2e43" value="#725C42"></embed-svg-replace>
+  <embed-svg-replace pattern="1\.22292Z&quot;\s+fill=&quot;#6c63ff" value="1.22292Z&quot; fill=&quot;#42692F"></embed-svg-replace>
+</embed-svg>
           </div>
           
           <div class="example-code" data-example="example-2"></div>

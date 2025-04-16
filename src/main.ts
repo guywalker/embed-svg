@@ -1,5 +1,5 @@
 import './style.css'
-import './components/inline-svg'
+import './components/embed-svg'
 import hljs from 'highlight.js';
 
 import xml from 'highlight.js/lib/languages/xml';

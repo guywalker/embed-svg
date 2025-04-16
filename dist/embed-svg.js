@@ -1,18 +1,18 @@
 var l = Object.defineProperty;
 var h = (n, s, e) => s in n ? l(n, s, { enumerable: !0, configurable: !0, writable: !0, value: e }) : n[s] = e;
 var c = (n, s, e) => h(n, typeof s != "symbol" ? s + "" : s, e);
-let i = {};
+let a = {};
 function u(n) {
   return new Promise((s, e) => {
-    if (i[n]) {
-      s(i[n]);
+    if (a[n]) {
+      s(a[n]);
       return;
     }
     const t = fetch(n).then((r) => r.text()).then((r) => {
       const o = document.createElement("div");
-      return o.innerHTML = r.trim(), i[n] = r, s(r), r;
+      return o.innerHTML = r.trim(), a[n] = r, s(r), r;
     }).catch((r) => (e(r), null));
-    i[n] = t;
+    a[n] = t;
   });
 }
 class d extends HTMLElement {
@@ -57,13 +57,13 @@ class d extends HTMLElement {
     });
   }
   applyReplacements(e) {
-    return this.querySelectorAll("inline-svg-replace").forEach((r) => {
-      const o = r.getAttribute("pattern"), a = r.getAttribute("value");
-      o && a && (e = e.replace(new RegExp(o, "g"), a));
+    return this.querySelectorAll("embed-svg-replace").forEach((r) => {
+      const o = r.getAttribute("pattern"), i = r.getAttribute("value");
+      o && i && (e = e.replace(new RegExp(o, "g"), i));
     }), e;
   }
 }
-customElements.define("inline-svg", d);
+customElements.define("embed-svg", d);
 export {
-  d as InlineSVG
+  d as EmbedSVG
 };
