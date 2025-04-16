@@ -8,26 +8,29 @@ import xml from 'highlight.js/lib/languages/xml';
 hljs.registerLanguage('xml', xml);
 
 function copyDisplayExamples() {
-  const examples = document.querySelectorAll('.example');
+  const examples = document.querySelectorAll('[data-example]');
   examples.forEach(example => {
     // find sibling with class example-code
-    const code = example.nextElementSibling as HTMLElement;
-    if (code.classList.contains('example-code')) {
+    const code = document.querySelector(`#${example.getAttribute('data-example')}`);
+    if (code) {
       // add example html into pre block
       const pre = document.createElement('pre');
       const highlightedCode = hljs.highlight(
-        example.innerHTML,
+        code.innerHTML.trim(),
         { language: 'xml' }
       ).value;
       // escape html
-      // const escaped = example.innerHTML.replace(/</g, '&lt;').replace(/>/g, '&gt;');
       pre.innerHTML = highlightedCode;
       // insert pre block into example-code
-      code.innerHTML = '';
-      code.appendChild(pre);
+      example.innerHTML = '';
+      example.appendChild(pre);
     }
   })
 }
+
+document.querySelectorAll('.language-js').forEach((block) => {
+  hljs.highlightBlock(block as HTMLElement);
+});
 
 // on document ready
 document.addEventListener('DOMContentLoaded', () => {

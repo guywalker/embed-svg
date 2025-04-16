@@ -12,26 +12,56 @@
       <div>
         <h1>Inline SVG</h1>
         <h3>Stop bundling your SVGs</h3>
+
+        <p>Inline SVG is a simple web component that allows you to inline SVGs into your HTML.</p>
+        <p>All the benefits of inlining your SVGs without having to bundle them.</p>
+
+        <h3>Features</h3>
+        <ul>
+          <li>✨ &nbsp;Dynamically load SVG files</li>
+          <li>🧳 &nbsp;Request caching</li>
+          <li>🎨 &nbsp;Customize SVG attributes (fill, width, height, etc.)</li>
+          <li>🔄 &nbsp;Pattern replacement support</li>
+          <li>🎯 &nbsp;Shadow DOM encapsulation</li>
+          <li>📦 &nbsp;No dependencies</li>
+          <li>🐣 &nbsp;1kb gzipped</li>
+        </ul>
+
+        <div class="demo-section">
+          <h2>Installation</h2>
+          <p>
+            You can install Inline SVG using npm:
+          </p>
+          <pre><code class="language-bash">npm install inline-svg</code></pre>
+        
+          <p>Then import the package</p>
+          <pre><code class="language-js">import 'inline-svg';</code></pre>
+        
+        </div>
+        
         
         <div class="demo-section">
           <h2>Basic Usage</h2>
           <div class="example">
-<inline-svg src="/rocket.svg" width="100" height="100" fill="#ffce2b"></inline-svg>
+<div class="svg-container" id="example-1">
+<inline-svg src="https://raw.githubusercontent.com/guywalker/inline-svg/refs/heads/main/public/rocket.svg" width="80" height="80" fill="#ffce2b"></inline-svg>
+</div>
           </div>
           
-          <div class="example-code"></div>
+          <div class="example-code" data-example="example-1"></div>
         </div>
         
         <div class="demo-section">
           <h2>Replacements</h2>
           <div class="example">
-<inline-svg src="/car.svg" width="300" height="300">
+<div class="svg-container" id="example-2">
+<inline-svg src="https://raw.githubusercontent.com/guywalker/inline-svg/refs/heads/main/public/car.svg" width="250" height="250">
   <inline-svg-replace pattern="#2f2e43" value="#725C42"></inline-svg-replace>
   <inline-svg-replace pattern="1\.22292Z&quot;\s+fill=&quot;#6c63ff" value="1.22292Z&quot; fill=&quot;#42692F"></inline-svg-replace>
 </inline-svg>
           </div>
           
-          <div class="example-code"></div>
+          <div class="example-code" data-example="example-2"></div>
         </div>
         
       </div>

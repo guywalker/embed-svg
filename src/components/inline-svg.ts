@@ -63,7 +63,7 @@ export class InlineSVG extends HTMLElement {
   
   private transferAttributes(svgElement: SVGElement) {
     Array.from(this.attributes).forEach(attr => {
-      if (attr.name !== 'src') {
+      if (attr.name !== 'src' && attr.name !== 'shadow') {
         svgElement.setAttribute(attr.name, attr.value);
       }
     });

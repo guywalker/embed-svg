@@ -53,7 +53,7 @@ class d extends HTMLElement {
   }
   transferAttributes(e) {
     Array.from(this.attributes).forEach((t) => {
-      t.name !== "src" && e.setAttribute(t.name, t.value);
+      t.name !== "src" && t.name !== "shadow" && e.setAttribute(t.name, t.value);
     });
   }
   applyReplacements(e) {
