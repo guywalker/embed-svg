@@ -15,6 +15,17 @@ export class EmbedSVG extends HTMLElement {
     } else {
       this.renderRoot = this.attachShadow({ mode: 'open' });
     }
+
+    // attach styles
+    const style = document.createElement('style');
+    style.textContent = `
+      :host {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+    `;
+    this.renderRoot.appendChild(style);
   }
   
   connectedCallback() {
